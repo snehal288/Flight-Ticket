@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Cheap Flight Finder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Cheap Flight Finder</h1>
+    <form action="{{ url_for('predict') }}" method="post">
+      <label>Origin</label>
+      <select name="origin">
+        {% for a in airports %}
+        <option value="{{a}}">{{a}}</option>
+        {% endfor %}
+      </select>
+
+      <label>Destination</label>
+      <select name="destination">
+        {% for a in airports %}
+        <option value="{{a}}">{{a}}</option>
+        {% endfor %}
+      </select>
+
+      <label>Days to departure</label>
+      <input type="number" name="days_to_departure" value="30"/>
+
+      <label>Preferred airline (optional)</label>
+      <select name="airline">
+        <option value="">Any</option>
+        {% for al in airlines %}
+        <option value="{{al}}">{{al}}</option>
+        {% endfor %}
+      </select>
+
+      <label>Duration (min)</label>
+      <input type="number" name="duration" value="180"/>
+
+      <label>Stops</label>
+      <input type="number" name="stops" value="0" min="0" max="3"/>
+
+      <button type="submit">Find cheap flights</button>
+    </form>
+  </div>
+</body>
+</html>
